@@ -14,11 +14,12 @@ namespace MethodsExercise
             string name = GetName();
             string color = GetColor();
             string[] food = GetFood();
+            string number = GetNumber();
 
             StoryTime(name, color);
 
 
-            DoTheMath(food);
+            DoTheMath(food, number);
         }
         public static string GetName()
         {
@@ -35,13 +36,27 @@ namespace MethodsExercise
         public static string[] GetFood()
         {
             string[] foods = new string[3];
-            Console.WriteLine("What if your favorite food?");
+            Console.WriteLine("What is your favorite food? (plural form)");
             foods[0] = Console.ReadLine().ToLower();
-            Console.WriteLine("What is your second favorite food?");
+            Console.WriteLine("What is your second favorite food? (singular form)");
             foods[1] = Console.ReadLine().ToLower();
-            Console.WriteLine("What is your third favorite food?");
+            Console.WriteLine("What is your third favorite food? (plural form");
             foods[2] = Console.ReadLine().ToLower();
             return foods;
+        }
+
+        public static string GetNumber()
+        {
+            Console.WriteLine("What is your favorite number?");
+            do
+            {
+            string number = Console.ReadLine();
+            if (int.TryParse(number, out int properNumber))
+                return number;
+            else
+                Console.WriteLine("Please enter a valid integer.");
+            } while (true);
+            
         }
 
         public static string UserChoice()
@@ -68,11 +83,12 @@ namespace MethodsExercise
         }
         public static void StartInRoom(string name, string color)
         {
-            Console.WriteLine("You wake, dazed and disoriented, your senses slow to return as you instinctively groom your");
-            Console.WriteLine($" soft {color} coat. You feel a collar around your neck and notice a tag with the");
-            Console.WriteLine($"name \"{name}\" attached. Hmmmm that name seems faintly familiar? Is it yours? A loved one's?");
+            Console.WriteLine("You wake, dazed and disoriented, your senses slow to return as you instinctively ");
+            Console.WriteLine($"groom your soft {color} coat. You feel a collar around your neck and notice a tag ");
+            Console.WriteLine($"with the name \"{name}\" attached. Hmmmm that name seems faintly familiar? Is it ");
+            Console.WriteLine("yours? A loved one's? The answer alludes you.");
             Console.WriteLine("The air is damp and heavy, thick with the scent of old stone and");
-            Console.WriteLine(" something faintly metallic. A chill clings to your fur, creeping in from the cold");
+            Console.WriteLine("something faintly metallic. A chill clings to your fur, creeping in from the cold");
             Console.WriteLine("stone floor beneath you. The dim light from a single flickering torch casts long,");
             Console.WriteLine("wavering shadows across the chamber, making the jagged cracks in the walls seem");
             Console.WriteLine("to shift and writhe");
@@ -213,22 +229,22 @@ namespace MethodsExercise
 
 
         // Math Methods start here
-        public static void DoTheMath(string[] foods) // this method tests out all the math operations methods
+        public static void DoTheMath(string[] foods, string number) // this method tests out all the math operations methods
         {
             Console.WriteLine("\n     ~   *   ~  *  ~   *   ~     =^.^=     ~   *   ~  *  ~   *   ~           ");
             Console.WriteLine("\nAs a reward for your bravery and cunning, you are granted a most wondrous");
             Console.WriteLine("prize... Math facts! ");
             //addition
-            Console.WriteLine($"\nYou gathered supplies before your escape. You packed 6 {foods[0]}, 3 {foods[1]},");
+            Console.WriteLine($"\nYou gathered supplies before your escape. You packed 6 {foods[0]}, 1 {foods[1]},");
             Console.WriteLine($"12 {foods[2]}, and 9 pouches of water. Good thing you were able to pillage all ");
             Console.WriteLine("your favorite foods! How many total provisions do you have?");
             Console.WriteLine($"6 + 3 + 12 + 9 = {Sum(6, 3, 12, 9)}");
             Console.WriteLine("That’s 30 provisions—enough to last a few days on the road!");
 
             //multiplication
-            Console.WriteLine("\nThe castle had 3 floors, and each floor had 4 locked doors just like yours.");
+            Console.WriteLine($"\nThe castle had 3 floors, and each floor had {number} locked doors just like yours.");
             Console.WriteLine("How many total locked doors were in the castle?");
-            Console.WriteLine($"3 x 4 = {Multiply(3, 4)}");
+            Console.WriteLine($"3 x {number} = {Multiply(3, int.Parse(number))}");
             Console.WriteLine("That's a lot of trapped souls… Hopefully, they all escaped too.");
 
 
