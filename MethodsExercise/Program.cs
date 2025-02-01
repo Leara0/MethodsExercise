@@ -16,13 +16,7 @@ namespace MethodsExercise
             Console.WriteLine("Please press any key to continue...");
             Console.ReadKey();
             
-            
-            
-            
-            
             DoTheMath();
-            
-            
         }
 
         public static void StoryTime()
