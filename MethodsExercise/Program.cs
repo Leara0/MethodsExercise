@@ -11,26 +11,68 @@ namespace MethodsExercise
         static void Main(string[] args)
         {
             Console.Clear();
-            StoryTime();
-            
-            Console.WriteLine("Please press any key to continue...");
-            Console.ReadKey();
-            
-            DoTheMath();
+            string name = GetName();
+            string color = GetColor();
+            string[] food = GetFood();
+
+            StoryTime(name, color);
+
+
+            DoTheMath(food);
+        }
+        public static string GetName()
+        {
+            Console.WriteLine("What is your name (or a name you like)?");
+            string name = Console.ReadLine();
+            return char.ToUpper(name[0]) + name.Substring(1);
+        }
+        public static string GetColor()
+        {
+            Console.WriteLine("What is your favorite color?");
+            return Console.ReadLine().ToLower();
         }
 
-        public static void StoryTime()
+        public static string[] GetFood()
+        {
+            string[] foods = new string[3];
+            Console.WriteLine("What if your favorite food?");
+            foods[0] = Console.ReadLine().ToLower();
+            Console.WriteLine("What is your second favorite food?");
+            foods[1] = Console.ReadLine().ToLower();
+            Console.WriteLine("What is your third favorite food?");
+            foods[2] = Console.ReadLine().ToLower();
+            return foods;
+        }
+
+        public static string UserChoice()
+        {
+            do
+            {
+                string input = Console.ReadLine();
+                if (input == "1" || input == "2")
+                    return input;
+                else
+                {
+                    Console.WriteLine("I'm sorry, but that isn't a valid choice. You must decide between the two paths before you.");
+                    Console.WriteLine("Please enter '1' or '2' to continue");
+                }
+            } while (true);
+        }
+
+        public static void StoryTime(string name, string color)
         {
             Console.WriteLine("\n   >   >   >   >   >   >   >   >   =^.^=   <   <   <   <   <   <   <   <   <   \n");
             Console.WriteLine("Greetings, adventurer. The night has been long and unkind, and your memories of it are ");
             Console.WriteLine("little more than a haze.");
-            StartInRoom();
+            StartInRoom(name, color);
         }
-        public static void StartInRoom()
+        public static void StartInRoom(string name, string color)
         {
-            Console.WriteLine("You wake, dazed and disoriented, your senses slow to return as you instinctively");
-            Console.WriteLine("groom your soft coat. The air is damp and heavy, thick with the scent of old stone");
-            Console.WriteLine("and something faintly metallic. A chill clings to your fur, creeping in from the cold");
+            Console.WriteLine("You wake, dazed and disoriented, your senses slow to return as you instinctively groom your");
+            Console.WriteLine($" soft {color} coat. You feel a collar around your neck and notice a tag with the");
+            Console.WriteLine($"name \"{name}\" attached. Hmmmm that name seems faintly familiar? Is it yours? A loved one's?");
+            Console.WriteLine("The air is damp and heavy, thick with the scent of old stone and");
+            Console.WriteLine(" something faintly metallic. A chill clings to your fur, creeping in from the cold");
             Console.WriteLine("stone floor beneath you. The dim light from a single flickering torch casts long,");
             Console.WriteLine("wavering shadows across the chamber, making the jagged cracks in the walls seem");
             Console.WriteLine("to shift and writhe");
@@ -43,16 +85,16 @@ namespace MethodsExercise
             Console.WriteLine("\nWhich path will you take?");
             Console.WriteLine("Press '1' to approach the window, or '2' to test the door.");
             Console.WriteLine("\n   >   >   >   >   >   >   >   >   =^.^=   <   <   <   <   <   <   <   <   <   \n");
-            
+
             if (UserChoice() == "1")
-                ExploreWindow();
+                ExploreWindow(name, color);
             else
-                ExploreDoor();
+                ExploreDoor(name, color);
         }
 
-        public static void ExploreWindow()
+        public static void ExploreWindow(string name, string color)
         {
-            
+
             Console.WriteLine("\n   -   -   -   -   -   -   -   -   =^.^=   -   -   -   -   -   -   -   -   -   -   \n");
             Console.WriteLine("You move toward the window, and as you draw closer, the suffocating weight of");
             Console.WriteLine("the castle's gloom seems to ease—if only slightly. Pressing yourself against the");
@@ -69,11 +111,11 @@ namespace MethodsExercise
             if (UserChoice() == "1")
                 UseSheets();
             else
-                JumpDown();
+                JumpDown(name, color);
         }
         public static void UseSheets()
         {
-            
+
             Console.WriteLine("\n   >   >   >   >   >   >   >   >   =^.^=   <   <   <   <   <   <   <   <   <   \n");
             Console.WriteLine("You err on the side of caution, deciding to use the sheets. Quickly, you tie them");
             Console.WriteLine("together, securing one end to the bedframe. With a deep breath, you throw the");
@@ -92,27 +134,29 @@ namespace MethodsExercise
             Console.WriteLine("For now, the only thing that matters is that you are free.");
             Console.WriteLine("The journey ahead may be uncertain, but one thing is sure: you've survived the night.");
             Console.WriteLine("\n   >   >   >   >   >   >   >   >   =^.^=   <   <   <   <   <   <   <   <   <   \n");
-            
+            Console.WriteLine("Please press any key to continue...");
+            Console.ReadKey();
+
 
         }
-        public static void JumpDown()
+        public static void JumpDown(string name, string color)
         {
-            
+
             Console.WriteLine("\n   >   >   >   >   >   >   >   >   =^.^=   <   <   <   <   <   <   <   <   <   \n");
             Console.WriteLine("you take a deep breath and leap into the night, trusting your agility. For a brief");
             Console.WriteLine("moment, you feel weightless—until you land with a jarring thud. The ground is");
             Console.WriteLine("unforgiving, and your 4 legs give way beneath you and your head smacks against the hard earth.");
-            PassOut();
-            StartInRoom();
+            PassOut(name, color);
+            StartInRoom(name, color);
         }
-        public static void PassOut()
+        public static void PassOut(string name, string color)
         {
             Console.WriteLine("The pain is immediate and blinding, and the world tilts around you, fading to black... =x.x=\n");
-            
+
         }
-        public static void ExploreDoor()
+        public static void ExploreDoor(string name, string color)
         {
-            
+
             Console.WriteLine("\n   -   -   -   -   -   -   -   -   =^.^=   -   -   -   -   -   -   -   -   -   -   \n");
             Console.WriteLine("You approach the heavy wooden door, your eyes drawn to the thick, old lock");
             Console.WriteLine("hanging from the latch. The lock is sturdy, but you know you must find a way out");
@@ -130,11 +174,11 @@ namespace MethodsExercise
             if (UserChoice() == "1")
                 PickLock();
             else
-                LargeStone();
+                LargeStone(name, color);
         }
-        public static void LargeStone()
+        public static void LargeStone(string name, string color)
         {
-            
+
             Console.WriteLine("\n   >   >   >   >   >   >   >   >   >   =^.^=   <   <   <   <   <   <   <   <   <   \n");
             Console.WriteLine("You decide to use the large stone near the fireplace. With a grunt, you lift the");
             Console.WriteLine("jagged rock, its weight heavy in your hands. You aim it carefully at the lock and");
@@ -142,13 +186,13 @@ namespace MethodsExercise
             Console.WriteLine("force causes it to bounce off the door, sending the stone ricocheting back toward");
             Console.WriteLine("you.");
             Console.WriteLine("Before you can react, the stone strikes your head with a sharp blow.");
-            PassOut();
-            StartInRoom();
+            PassOut(name, color);
+            StartInRoom(name, color);
 
         }
         public static void PickLock()
         {
-            
+
             Console.WriteLine("\n   >   >   >   >   >   >   >   >   >   =^.^=   <   <   <   <   <   <   <   <   <   \n");
             Console.WriteLine("You carefully examine the rusty set of tools. With steady hands,");
             Console.WriteLine("you select a small pick and a thin rod, using them to work the lock. The old lock");
@@ -164,32 +208,20 @@ namespace MethodsExercise
             SuccessfulEscape();
         }
 
-        public static string UserChoice()
-        {
-            do
-            {
-                string input = Console.ReadLine();
-                if (input == "1" || input == "2")
-                    return input;
-                else
-                {
-                    Console.WriteLine("I'm sorry, but that isn't a valid choice. You must decide between the two paths before you.");
-                    Console.WriteLine("Please enter '1' or '2' to continue");
-                }
-            } while (true);
-        }
+
 
 
 
         // Math Methods start here
-        public static void DoTheMath() // this method tests out all the math operations methods
+        public static void DoTheMath(string[] foods) // this method tests out all the math operations methods
         {
             Console.WriteLine("\n     ~   *   ~  *  ~   *   ~     =^.^=     ~   *   ~  *  ~   *   ~           ");
             Console.WriteLine("\nAs a reward for your bravery and cunning, you are granted a most wondrous");
             Console.WriteLine("prize... Math facts! ");
             //addition
-            Console.WriteLine("\nYou gathered supplies before your escape. You packed 6 apples, 3 loaves of bread,");
-            Console.WriteLine("12 strips of dried meat, and 9 pouches of water. How many total provisions do you have?");
+            Console.WriteLine($"\nYou gathered supplies before your escape. You packed 6 {foods[0]}, 3 {foods[1]},");
+            Console.WriteLine($"12 {foods[2]}, and 9 pouches of water. Good thing you were able to pillage all ");
+            Console.WriteLine("your favorite foods! How many total provisions do you have?");
             Console.WriteLine($"6 + 3 + 12 + 9 = {Sum(6, 3, 12, 9)}");
             Console.WriteLine("That’s 30 provisions—enough to last a few days on the road!");
 
@@ -203,7 +235,7 @@ namespace MethodsExercise
             //division
             Console.WriteLine("\nAs you ran into the forest, you found a 64-foot-long rope tied between the trees.");
             Console.WriteLine("If it was cut into 8 equal sections, how long was each piece?");
-            Console.WriteLine($"64 ÷ 8  = {Divide(64,8)}");
+            Console.WriteLine($"64 ÷ 8  = {Divide(64, 8)}");
             Console.WriteLine("Each piece was 8 feet long—perfect for climbing or setting traps.");
 
             //subtraction
@@ -211,7 +243,7 @@ namespace MethodsExercise
             Console.WriteLine("and 25 for a safe passage through a toll, how many coins do you have left?");
             Console.WriteLine($"150 - 30 - 25 = {Subtract(150, 30, 25)}");
             Console.WriteLine("You still have 95 gold coins—a nice stash for the next town!");
-            
+
             Console.WriteLine("\n\nMore math means more adventures—keep your wits sharp!");
             Console.WriteLine("\n     ~   *   ~  *  ~   *   ~     =^.^=     ~   *   ~  *  ~   *   ~           ");
         }
