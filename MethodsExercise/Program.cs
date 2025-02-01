@@ -16,15 +16,13 @@ namespace MethodsExercise
             Console.WriteLine("Please press any key to continue...");
             Console.ReadKey();
             
-            Console.WriteLine("\n     ~   *   ~  *  ~   *   ~     =^.^=     ~   *   ~  *  ~   *   ~           ");
-            Console.WriteLine("\nAs a reward for your bravery and cunning, you are granted a most wondrous");
-            Console.WriteLine("prize... Math facts! ");
+            
+            
             
             
             DoTheMath();
             
-            Console.WriteLine("\n\nMore math means more adventures—keep your wits sharp!");
-            Console.WriteLine("\n     ~   *   ~  *  ~   *   ~     =^.^=     ~   *   ~  *  ~   *   ~           ");
+            
         }
 
         public static void StoryTime()
@@ -192,6 +190,9 @@ namespace MethodsExercise
         // Math Methods start here
         public static void DoTheMath() // this method tests out all the math operations methods
         {
+            Console.WriteLine("\n     ~   *   ~  *  ~   *   ~     =^.^=     ~   *   ~  *  ~   *   ~           ");
+            Console.WriteLine("\nAs a reward for your bravery and cunning, you are granted a most wondrous");
+            Console.WriteLine("prize... Math facts! ");
             //addition
             Console.WriteLine("\nYou gathered supplies before your escape. You packed 6 apples, 3 loaves of bread,");
             Console.WriteLine("12 strips of dried meat, and 9 pouches of water. How many total provisions do you have?");
@@ -216,6 +217,9 @@ namespace MethodsExercise
             Console.WriteLine("and 25 for a safe passage through a toll, how many coins do you have left?");
             Console.WriteLine($"150 - 30 - 25 = {Subtract(150, 30, 25)}");
             Console.WriteLine("You still have 95 gold coins—a nice stash for the next town!");
+            
+            Console.WriteLine("\n\nMore math means more adventures—keep your wits sharp!");
+            Console.WriteLine("\n     ~   *   ~  *  ~   *   ~     =^.^=     ~   *   ~  *  ~   *   ~           ");
         }
 
         public static int Sum(params int[] numbers)
